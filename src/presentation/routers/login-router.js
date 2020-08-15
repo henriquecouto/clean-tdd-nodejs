@@ -1,5 +1,5 @@
 const HttpResponse = require('../helpers/http-response')
-const MissingParamError = require('../helpers/missim-param-error')
+const MissingParamError = require('../helpers/missing-param-error')
 
 class LoginRouter {
   constructor (authUseCase) {
