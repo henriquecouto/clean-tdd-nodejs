@@ -19,6 +19,10 @@ class HttpResponse {
       body: new UnauthorizedError()
     }
   }
+
+  static success () {
+    return { statusCode: 200 }
+  }
 }
 
 module.exports = HttpResponse
