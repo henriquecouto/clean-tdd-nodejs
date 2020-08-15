@@ -20,8 +20,11 @@ class HttpResponse {
     }
   }
 
-  static success () {
-    return { statusCode: 200 }
+  static success (body) {
+    return {
+      statusCode: 200,
+      body
+    }
   }
 }
 
