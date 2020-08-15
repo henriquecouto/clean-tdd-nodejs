@@ -1,0 +1,9 @@
+{
+  "name": "clean-tdd-nodejs",
+  "version": "1.0.0",
+  "description": "Project to learn Clean Architecture and TDD using NodeJS",
+  "main": "index.js",
+  "repository": "https://github.com/henriquecouto/clean-tdd-nodejs.git",
+  "author": "Henrique Couto <email@henriquecouto.com.br>",
+  "license": "MIT"
+}
