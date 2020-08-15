@@ -3,10 +3,22 @@
   "version": "1.0.0",
   "description": "Project to learn Clean Architecture and TDD using NodeJS",
   "main": "index.js",
+  "lint-staged": {
+    "*.js": [
+      "standard --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "repository": "https://github.com/henriquecouto/clean-tdd-nodejs.git",
   "author": "Henrique Couto <email@henriquecouto.com.br>",
   "license": "MIT",
   "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "standard": "^14.3.4"
   }
 }
