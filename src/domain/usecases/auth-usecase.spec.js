@@ -112,14 +112,17 @@ describe('Auth UseCase', () => {
     expect(accessToken).toBeTruthy()
   })
 
-  test('Should throw if no dependency is provided', () => {
+  test('Should throw if no dependencies is provided', () => {
     const invalid = {}
-
+    const loadUserByEmailRepository = makeLoadUserByEmailRepository()
     const suts = [
       new AuthUseCase(),
       new AuthUseCase({ }),
       new AuthUseCase({
         loadUserByEmailRepository: invalid
+      }),
+      new AuthUseCase({
+        loadUserByEmailRepository
       })
     ]
     for (const sut of suts) {
