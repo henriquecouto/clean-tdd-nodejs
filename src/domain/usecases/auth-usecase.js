@@ -16,18 +16,13 @@ class AuthUseCase {
     }
 
     const user = await this.loadUserByEmailRepository.load(email)
+    const isValid = user && await this.encrypter.compare(password, user.password)
 
-    if (!user) {
-      return null
+    if (isValid) {
+      const accessToken = await this.tokenGenerator.generate(user.id)
+      return accessToken
     }
-
-    const isValidPassword = await this.encrypter.compare(password, user.password)
-    if (!isValidPassword) {
-      return null
-    }
-
-    const accessToken = await this.tokenGenerator.generate(user.id)
-    return accessToken
+    return null
   }
 }
 
