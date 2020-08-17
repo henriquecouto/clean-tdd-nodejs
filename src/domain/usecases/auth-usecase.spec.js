@@ -115,6 +115,7 @@ describe('Auth UseCase', () => {
   test('Should throw if no dependencies is provided', () => {
     const invalid = {}
     const loadUserByEmailRepository = makeLoadUserByEmailRepository()
+    const encrypter = makeEncrypter()
     const suts = [
       new AuthUseCase(),
       new AuthUseCase({ }),
@@ -123,6 +124,14 @@ describe('Auth UseCase', () => {
       }),
       new AuthUseCase({
         loadUserByEmailRepository
+      }),
+      new AuthUseCase({
+        loadUserByEmailRepository,
+        encrypter: invalid
+      }),
+      new AuthUseCase({
+        loadUserByEmailRepository,
+        encrypter
       })
     ]
     for (const sut of suts) {
