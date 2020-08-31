@@ -1,4 +1,4 @@
-class LoadUseByEmailRepository {
+class LoadUserByEmailRepository {
   constructor (userModel) {
     this.userModel = userModel
   }
@@ -9,4 +9,4 @@ class LoadUseByEmailRepository {
   }
 }
 
-module.exports = LoadUseByEmailRepository
+module.exports = LoadUserByEmailRepository
