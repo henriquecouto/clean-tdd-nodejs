@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb')
-const LoadUserByEmailRepository = require('./load-user-by-email')
+const LoadUserByEmailRepository = require('./load-user-by-email-repository')
 let client, db
 
 const makeSut = () => {
