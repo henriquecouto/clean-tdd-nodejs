@@ -19,6 +19,7 @@
   "author": "Henrique Couto <email@henriquecouto.com.br>",
   "license": "MIT",
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
     "husky": "^4.2.5",
     "jest": "^26.4.0",
     "lint-staged": "^10.2.11",
@@ -27,6 +28,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.0",
     "validator": "^13.1.1"
   }
 }
