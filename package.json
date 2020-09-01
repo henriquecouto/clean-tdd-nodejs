@@ -4,8 +4,8 @@
   "description": "Project to learn Clean Architecture and TDD using NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "jest --silent --noStackTrace",
-    "test:unit": "yarn test --watchAll --detectOpenHandles -c jest-unit.config.js",
+    "test": "jest --silent --noStackTrace --detectOpenHandles",
+    "test:unit": "yarn test --watchAll -c jest-unit.config.js",
     "test:integration": "yarn test --watchAll -c jest-integration.config.js",
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage"
