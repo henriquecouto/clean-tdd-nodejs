@@ -10,13 +10,17 @@ const makeSut = () => {
 }
 
 describe('UpdateAccessToken Repository', () => {
+  let fakeUserId
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
     db = await MongoHelper.getDB()
   })
 
   beforeEach(async () => {
-    await db.collection('users').deleteMany()
+    const userModel = db.collection('users')
+    await userModel.deleteMany()
+    const fakeUser = await userModel.insertOne({ email: 'valid@mail.com' })
+    fakeUserId = fakeUser.ops[0]._id
   })
 
   afterAll(async () => {
@@ -26,26 +30,22 @@ describe('UpdateAccessToken Repository', () => {
   test('Should update the user with the given accessToken', async () => {
     const { sut, userModel } = makeSut()
 
-    const fakeUser = await userModel.insertOne({ email: 'valid@mail.com' })
-    await sut.update(fakeUser.ops[0]._id, 'valid_token')
-    const updatedFakeUser = await userModel.findOne({ _id: fakeUser.ops[0]._id })
+    await sut.update(fakeUserId, 'valid_token')
+    const updatedFakeUser = await userModel.findOne({ _id: fakeUserId })
     expect(updatedFakeUser.accessToken).toBe('valid_token')
   })
 
   test('Should throw if no useModel is provided', async () => {
-    const userModel = db.collection('users')
     const sut = new UpdateAccessTokenRepository()
-    const fakeUser = await userModel.insertOne({ email: 'valid@mail.com' })
-    const promise = sut.update(fakeUser.ops[0]._id, 'valid_token')
+    const promise = sut.update(fakeUserId, 'valid_token')
 
     expect(promise).rejects.toThrow()
   })
 
   test('Should throw if no params are provided', async () => {
-    const { sut, userModel } = makeSut()
-    const fakeUser = await userModel.insertOne({ email: 'valid@mail.com' })
+    const { sut } = makeSut()
 
     expect(sut.update()).rejects.toThrow(new MissingParamError('userId'))
-    expect(sut.update(fakeUser.ops[0]._id)).rejects.toThrow(new MissingParamError('accessToken'))
+    expect(sut.update(fakeUserId)).rejects.toThrow(new MissingParamError('accessToken'))
   })
 })
