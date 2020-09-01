@@ -2,8 +2,9 @@
   "name": "clean-tdd-nodejs",
   "version": "1.0.0",
   "description": "Project to learn Clean Architecture and TDD using NodeJS",
-  "main": "index.js",
+  "main": "src/main/index.js",
   "scripts": {
+    "start": "node ./",
     "test": "jest --silent --noStackTrace",
     "test:unit": "yarn test --watchAll -c jest-unit.config.js",
     "test:integration": "yarn test --watchAll -c jest-integration.config.js",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.0",
     "validator": "^13.1.1"
