@@ -7,12 +7,16 @@ const Encrypter = require('../../utils/helpers/encrypter')
 const TokenGenerator = require('../../utils/helpers/token-generator')
 const env = require('../config/env')
 
-const loadUserByEmailRepository = new LoadUserByEmailRepository()
-const updateAccessTokenRepository = new UpdateAccessTokenRepository()
-const encrypter = new Encrypter()
-const tokenGenerator = new TokenGenerator(env.tokenSecret)
-const authUseCase = new AuthUseCase({ loadUserByEmailRepository, updateAccessTokenRepository, encrypter, tokenGenerator })
-const emailValidator = new EmailValidator()
-const loginRouter = new LoginRouter({ authUseCase, emailValidator })
+class LoginRouterComposer {
+  static compose () {
+    const loadUserByEmailRepository = new LoadUserByEmailRepository()
+    const updateAccessTokenRepository = new UpdateAccessTokenRepository()
+    const encrypter = new Encrypter()
+    const tokenGenerator = new TokenGenerator(env.tokenSecret)
+    const authUseCase = new AuthUseCase({ loadUserByEmailRepository, updateAccessTokenRepository, encrypter, tokenGenerator })
+    const emailValidator = new EmailValidator()
+    return new LoginRouter({ authUseCase, emailValidator })
+  }
+}
 
-module.exports = loginRouter
+module.exports = LoginRouterComposer
