@@ -1,4 +1,4 @@
-const router = require('express').Router
+const router = require('express').Router()
 const fg = require('fast-glob')
 
 module.exports = app => {
